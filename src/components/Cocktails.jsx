@@ -22,18 +22,18 @@ const Cocktails = () => {
     });
   });
   return (
-    <section id="cocktails" className="noisy relative  ">
+    <section id="cocktails" className="noisy    ">
       <img
         src="/images/cocktail-left-leaf.png"
         id="c-left-leaf"
         alt="cocktail-left-leaf"
-        className="absolute bottom-0 -left-10 w-40 sm:w-60"
+        className="c-left-leaf hidden sm:block  sm:bottom-0 "
       />
       <img
         src="/images/cocktail-right-leaf.png"
         alt="cocktail-right-leaf"
         id="c-right-leaf"
-        className="absolute bottom-10 right-10  w-40 sm:w-60"
+        className=" hidden sm:block    sm:bottom-0"
       />
       <div className="max-w-7xl mx-auto lg:flex items-center lg:justify-center lg:h-screen   ">
         <div className="list  ">
