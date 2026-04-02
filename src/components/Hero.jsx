@@ -53,7 +53,7 @@ const Hero = () => {
     if (video) {
       const videoTl = gsap.timeline({
         scrollTrigger: {
-          trigger: "video",
+          trigger: video,
           start: isMobile ? "top 50%" : "center 60%",
           end: isMobile ? "+=1000" : "bottom top",
           scrub: true,
@@ -114,10 +114,11 @@ const Hero = () => {
       <div className="video absolute inset-0 z-0 ">
         <video
           ref={videoRef}
-          src="/videos/output.mp4"
+          src="/videos/output_optimized.mp4"
           muted
           playsInline
           preload="auto"
+          type="video/mp4"
         ></video>
       </div>
     </>
