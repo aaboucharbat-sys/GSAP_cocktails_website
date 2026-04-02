@@ -56,7 +56,7 @@ const Hero = () => {
           trigger: video,
           start: isMobile ? "top 50%" : "center 60%",
           end: isMobile ? "+=1000" : "bottom top",
-          scrub: true,
+          scrub: 1,
           pin: true,
         },
       });

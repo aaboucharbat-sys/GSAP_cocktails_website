@@ -31,7 +31,7 @@ const Navbar = () => {
   return (
     <nav>
       <div className="flex max-w-6xl ">
-        <a href="#home" className="flex items-center gap-2">
+        <a href="#hero" className="flex items-center gap-2">
           <img src="/images/logo.png" alt="velvet" />
           <p>Velvet Pour</p>
         </a>
