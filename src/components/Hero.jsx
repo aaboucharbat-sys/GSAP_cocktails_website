@@ -11,74 +11,70 @@ const Hero = () => {
   const videoRef = useRef();
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
-// أضف هذا المرجع للعنصر الأب في مكونك
-const containerRef = useRef(null);
+  // أضف هذا المرجع للعنصر الأب في مكونك
+  const containerRef = useRef(null);
 
-useGSAP(() => {
-  
+  useGSAP(() => {
     const heroSplit = new SplitText(".title", { type: "chars, words" });
     const pSplit = new SplitText(".subtitle", { type: "lines" });
 
     heroSplit.chars.forEach((char) => char.classList.add("text-gradient"));
 
     gsap.from(heroSplit.chars, {
-        yPercent: 100,
-        duration: 1.8,
-        ease: "expo.out",
-        stagger: 0.06,
+      yPercent: 100,
+      duration: 1.8,
+      ease: "expo.out",
+      stagger: 0.06,
     });
 
     gsap.from(pSplit.lines, {
-        yPercent: 100,
-        delay: 1,
-        duration: 1.8,
-        ease: "expo.out",
-        stagger: 0.08,
-        opacity: 0,
+      yPercent: 100,
+      delay: 1,
+      duration: 1.8,
+      ease: "expo.out",
+      stagger: 0.08,
+      opacity: 0,
     });
 
-   
-    gsap.timeline({
+    gsap
+      .timeline({
         scrollTrigger: {
-            trigger: "#hero",
-            start: "top top",
-            scrub: 1, 
-            end: "bottom top",
+          trigger: "#hero",
+          start: "top top",
+          scrub: 1,
+          end: "bottom top",
         },
-    })
-    .to(".left-leaf", { y: -200, force3D: true }, 0)
-    .to(".right-leaf", { y: 250, force3D: true }, 0);
+      })
+      .to(".left-leaf", { y: -200, force3D: true }, 0)
+      .to(".right-leaf", { y: 250, force3D: true }, 0);
 
-   
     const video = videoRef.current;
-    
+
     if (video) {
-        const videoTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: "video",
-                start: isMobile ? "top 50%" : "center 60%",
-                end: isMobile ? "200% top" : "bottom top",
-                scrub: 2, 
-                pin: true,
-            },
+      const videoTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "video",
+          start: isMobile ? "top 50%" : "center 60%",
+          end: isMobile ? "+=1000" : "bottom top",
+          scrub: true,
+          pin: true,
+        },
+      });
+
+      const initVideoAnimation = () => {
+        videoTl.to(video, {
+          currentTime: video.duration || 1,
+          ease: "none",
         });
+      };
 
-       
-        const initVideoAnimation = () => {
-            videoTl.to(video, {
-                currentTime: video.duration || 1, 
-                ease: "none"
-            });
-        };
-
-        if (video.readyState >= 2) {
-            initVideoAnimation();
-        } else {
-            video.onloadedmetadata = initVideoAnimation;
-        }
+      if (video.readyState >= 2) {
+        initVideoAnimation();
+      } else {
+        video.onloadedmetadata = initVideoAnimation;
+      }
     }
-
-}, []); 
+  }, []);
 
   return (
     <>
@@ -87,7 +83,7 @@ useGSAP(() => {
           src="/images/hero-right-leaf.png"
           alt="right-leaf"
           className="right-leaf"
-        />ù
+        />
         <h1 className="title">MOJITO</h1>
         <img
           src="/images/hero-left-leaf.png"
@@ -118,7 +114,7 @@ useGSAP(() => {
       <div className="video absolute inset-0 z-0 ">
         <video
           ref={videoRef}
-          src="/videos/input.mp4"
+          src="/videos/output.mp4"
           muted
           playsInline
           preload="auto"
